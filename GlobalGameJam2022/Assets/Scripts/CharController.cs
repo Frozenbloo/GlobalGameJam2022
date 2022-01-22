@@ -16,7 +16,8 @@ public class CharController : MonoBehaviour
     public float checkRadius;
     public LayerMask platforms;
 
-    
+    public int coyoteMax;
+    int coyoteTime = 0;
 
 
 
@@ -28,6 +29,7 @@ public class CharController : MonoBehaviour
 
     void FixedUpdate()
     {
+        rb.freezeRotation = true;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, platforms);
 
         moveInput = Input.GetAxisRaw("Horizontal");
@@ -41,6 +43,13 @@ public class CharController : MonoBehaviour
         {
             Flip();
         }
+
+        else if (isGrounded)
+        {
+            coyoteTime = 0;
+        }
+
+        Debug.Log(coyoteTime);
     }
 
     // Update is called once per frame
@@ -48,8 +57,15 @@ public class CharController : MonoBehaviour
     {
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = Vector2.up * jumpForce;
+            Jump();
+            coyoteTime = 500;
         }
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTime <= coyoteMax)
+        {
+            Jump();
+            coyoteTime = coyoteMax;
+        }
+        coyoteTime++;
     }
 
     void Flip()
@@ -58,5 +74,10 @@ public class CharController : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    void Jump()
+    {
+        rb.velocity = Vector2.up * jumpForce;
     }
 }
