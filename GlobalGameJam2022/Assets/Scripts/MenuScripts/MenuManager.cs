@@ -18,7 +18,10 @@ public class MenuManager : MonoBehaviour
     public Slider LoadingBar;
 
     //thnk about tommorow
-    
+    public Animator transition;
+    public float transitionTime = 1f;
+
+
     void Start()
     {
         mainMenu.SetActive(true);
@@ -66,5 +69,8 @@ public class MenuManager : MonoBehaviour
 
             yield return null;
         }
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
     }
 }
