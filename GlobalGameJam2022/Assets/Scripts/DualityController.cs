@@ -49,7 +49,6 @@ public class DualityController : MonoBehaviour
             coyoteTime = 0;
         }
 
-        Debug.Log(coyoteTime);
     }
 
     // Update is called once per frame

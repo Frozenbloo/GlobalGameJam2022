@@ -12,6 +12,7 @@ public class CharController : MonoBehaviour
 
     bool facingRight = true;
     bool isGrounded;
+    bool isHigh;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask platforms;
@@ -31,7 +32,6 @@ public class CharController : MonoBehaviour
     {
         rb.freezeRotation = true;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, platforms);
-
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
@@ -48,8 +48,6 @@ public class CharController : MonoBehaviour
         {
             coyoteTime = 0;
         }
-
-        Debug.Log(coyoteTime);
     }
 
     // Update is called once per frame
@@ -66,6 +64,7 @@ public class CharController : MonoBehaviour
             coyoteTime = coyoteMax;
         }
         coyoteTime++;
+
     }
 
     void Flip()
@@ -80,4 +79,5 @@ public class CharController : MonoBehaviour
     {
         rb.velocity = Vector2.up * jumpForce;
     }
+
 }
