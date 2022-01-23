@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
     //thnk about tommorow
     
     void Start()
-    {       
+    {
         mainMenu.SetActive(true);
 
         start = mainMenu.transform.GetChild(0).GetComponent<Button>();
