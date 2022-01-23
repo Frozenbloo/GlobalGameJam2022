@@ -43,7 +43,7 @@ public class WinCondition : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 7)
         {
             StartCoroutine(LoadLevel(1));
         }
