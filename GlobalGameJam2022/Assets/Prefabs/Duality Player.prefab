@@ -454,7 +454,7 @@ MonoBehaviour:
   Respawn: 1
   fx: {fileID: 0}
   transition: {fileID: 0}
-  transitionTime: 1
+  transitionTime: 0.25
 --- !u!82 &6734196852757378012
 AudioSource:
   m_ObjectHideFlags: 0
