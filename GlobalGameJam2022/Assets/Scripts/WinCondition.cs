@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class KillPlayer : MonoBehaviour
+public class WinCondition : MonoBehaviour
 {
     [Header("Scene Index")]
     public int Respawn;
 
     [Header("Death FX")]
     AudioSource audioData;
-    public ParticleSystem fx;
+    public ParticleSystem fx1;
+    public ParticleSystem fx2;
 
     public Animator transition;
 
 
     public float transitionTime = 1f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,23 +28,22 @@ public class KillPlayer : MonoBehaviour
     {
         
     }
-
     IEnumerator OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             audioData = GetComponent<AudioSource>();
             audioData.Play(0);
-            fx.Play();
-            yield return new WaitForSeconds(0.1f);
-            ReloadLevel();
+            fx1.Play();
+            fx2.Play();
+            yield return new WaitForSeconds(2f);
+            LoadNextLevel();
         }
     }
 
-
-    public void ReloadLevel()
+    public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     IEnumerator LoadLevel(int levelIndex)
